@@ -10,11 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent panel = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent panel = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
 
         Scene scene = new Scene(panel, 700, 400);
 
-        primaryStage.setTitle("Java test");
+        primaryStage.setTitle("Java testController");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

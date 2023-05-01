@@ -8,4 +8,6 @@ public class Const {
     public static final String USERS_USERNAME = "username";
     public static final String USERS_PASSWORD = "password";
     public static final String USERS_GROUPNAME = "c_group";
+    public static final String USERS_RESULT = "userresult";
+    public static final String USERS_DATETIME = "datetime";
 }

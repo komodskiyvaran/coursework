@@ -27,7 +27,8 @@ public class DataBaseHandler extends Configs {
         String insert = "INSERT INTO " + Const.USER_TABLE + " (" +  // sql zapros
             Const.USERS_FIRSTNAME + "," + Const.USERS_LASTNAME + "," +
             Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + "," +
-            Const.USERS_GROUPNAME + ")" + " VALUES (?,?,?,?,?)";
+            Const.USERS_GROUPNAME + "," + Const.USERS_RESULT + "," +
+            Const.USERS_DATETIME + ")" + " VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
@@ -36,6 +37,8 @@ public class DataBaseHandler extends Configs {
             prSt.setString(3, user.getUserName());
             prSt.setString(4, user.getPassword());
             prSt.setString(5, user.getGroup());
+            prSt.setString(6, user.getUserResult());
+            prSt.setString(7, user.getDateTime());
 
             prSt.executeUpdate();
         } catch (SQLException throwables) {

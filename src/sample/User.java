@@ -6,6 +6,8 @@ public class User {
     private String userName;
     private String password;
     private String group;
+    private String userResult;
+    private String dateTime;
 
     public User(String firstName, String lastName, String userName, String password, String group) {
         this.firstName = firstName;
@@ -13,6 +15,23 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.group = group;
+    }
+
+
+    public String getUserResult() {
+        return userResult;
+    }
+
+    public void setUserResult(String userResult) {
+        this.userResult = userResult;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
     public User() {

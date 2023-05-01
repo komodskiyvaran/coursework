@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.Controller">
    <children>
       <AnchorPane layoutX="-7.0" layoutY="118.0" prefHeight="290.0" prefWidth="708.0" style="-fx-background-color: #fafafa;">
          <children>
@@ -26,12 +26,12 @@
                   <Font name="Cascadia Code Regular" size="31.0" />
                </font>
             </Label>
-            <Button fx:id="authfSignButton" layoutX="145.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #F38C63;" stylesheets="@Styles.css" text="Войти" textFill="WHITE">
+            <Button fx:id="authfSignButton" layoutX="145.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #F38C63;" stylesheets="@../Styles.css" text="Войти" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="lognSingUpButton" layoutX="364.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #b3b3b3;" stylesheets="@Styles.css" text="Зарегистрироваться" textFill="WHITE">
+            <Button fx:id="lognSingUpButton" layoutX="364.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #b3b3b3;" stylesheets="@../Styles.css" text="Зарегистрироваться" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>
