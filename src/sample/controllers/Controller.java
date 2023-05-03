@@ -1,10 +1,9 @@
-package sample;
+package sample.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Savepoint;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DataBaseHandler;
+import sample.Main;
+import sample.User;
 import sample.animations.Shake;
 
 public class Controller {
@@ -48,7 +50,7 @@ public class Controller {
         });
 
         lognSingUpButton.setOnAction(event -> { // нажимаем на кнопку "регистрация"
-            openNewScene("/sample/signUp.fxml");
+            openNewScene("/sample/view/signUp.fxml");
         });
     }
 
@@ -58,6 +60,7 @@ public class Controller {
         user.setUserName(loginText);
         user.setPassword(loginPassword);
         ResultSet result = dbHandler.getUser(user);
+
 
         int counter = 0;
 
@@ -70,7 +73,11 @@ public class Controller {
         }
 
         if (counter >= 1) {
-            openNewScene("/sample/app.fxml");
+            //УСТАНОВИМ ЮЗЕРА СЕЙЧАС
+
+
+
+            openNewScene("/sample/view/menu.fxml");
         }
         else {
             Shake userloginAnim = new Shake(login_filed);

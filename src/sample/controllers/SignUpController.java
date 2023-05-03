@@ -1,4 +1,4 @@
-package sample;
+package sample.controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.DataBaseHandler;
+import sample.User;
 
 public class SignUpController {
 
@@ -42,7 +44,7 @@ public class SignUpController {
     void initialize() {
         SignButton.setOnAction(event -> {   // нажимаем на кнопку "Зарегистрироваться"
             signUpNewUser();
-            openNewScene("/sample/sample.fxml");
+            openNewScene("/sample/view/sample.fxml");
 
         });
     }
