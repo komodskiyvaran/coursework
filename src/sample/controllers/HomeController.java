@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -41,11 +42,13 @@ public class HomeController {
     @FXML
     private Button resultButton;
 
+    @FXML
+    private Label textview;
+
 
     @FXML
     void initialize() {
         testButton.setOnAction(event -> {
-            boxResultTest.setVisible(false);
             resultButton.setVisible(false); // скрываем результрующую кнопку
             testButton.setVisible(false);   // скрываем кнопку тест
             startTestButton.setVisible(true);   // открываем кнопку START TEST!
@@ -57,6 +60,7 @@ public class HomeController {
         });
 
         resultButton.setOnAction(event -> {
+            textview.setVisible(true);
             resultButton.setVisible(false);
             testButton.setVisible(false);
             boxResultTest.setVisible(true); // открываем наш text Area
@@ -65,6 +69,7 @@ public class HomeController {
         });
 
         imageButtonHome.setOnMouseClicked(mouseEvent -> { // нажимаешь на картинку - возвращается в исходное положение менюшки
+            textview.setVisible(false);
             boxResultTest.setVisible(false);
             boxResultTest.setVisible(false);
             resultButton.setVisible(true);

@@ -27,11 +27,16 @@
                   <Font name="Cascadia Code Regular" size="19.0" />
                </font>
             </Button>
-            <TextArea fx:id="boxResultTest" editable="false" layoutX="19.0" layoutY="14.0" prefHeight="282.0" prefWidth="677.0" visible="false">
+            <TextArea fx:id="boxResultTest" editable="false" layoutX="19.0" layoutY="38.0" prefHeight="250.0" prefWidth="678.0" text="textView" visible="false">
                <font>
                   <Font name="Cascadia Code Regular" size="15.0" />
                </font>
             </TextArea>
+            <Label fx:id="textview" layoutX="35.0" layoutY="14.0" prefHeight="19.0" prefWidth="638.0" text="Name        Surname           Date           %  " visible="false">
+               <font>
+                  <Font name="Cascadia Code Regular" size="16.0" />
+               </font>
+            </Label>
          </children>
         </AnchorPane>
       <ImageView fx:id="imageButtonHome" fitHeight="71.0" fitWidth="89.0" layoutX="21.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
