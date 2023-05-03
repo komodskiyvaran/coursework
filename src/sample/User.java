@@ -9,6 +9,16 @@ public class User {
     private String userResult;
     private String dateTime;
 
+    public User(String firstName, String lastName, String userName, String password, String group, String userResult, String dateTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.group = group;
+        this.userResult = userResult;
+        this.dateTime = dateTime;
+    }
+
     public User(String firstName, String lastName, String userName, String password, String group) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,6 +27,8 @@ public class User {
         this.group = group;
     }
 
+    public User() {
+    }
 
     public String getUserResult() {
         return userResult;
@@ -32,10 +44,6 @@ public class User {
 
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
-    }
-
-    public User() {
-
     }
 
     public String getFirstName() {
@@ -76,5 +84,9 @@ public class User {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public String showUsersResult(){
+        return getFirstName()+ "\t\t" + getLastName() + "\t\t" + getDateTime() + "\t" + "\t" + getGroup() + "\n";
     }
 }
