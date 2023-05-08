@@ -6,10 +6,10 @@ public class User {
     private String userName;
     private String password;
     private String group;
-    private String userResult;
+    private int userResult;
     private String dateTime;
 
-    public User(String firstName, String lastName, String userName, String password, String group, String userResult, String dateTime) {
+    public User(String firstName, String lastName, String userName, String password, String group, int userResult, String dateTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -30,11 +30,11 @@ public class User {
     public User() {
     }
 
-    public String getUserResult() {
+    public int getUserResult() {
         return userResult;
     }
 
-    public void setUserResult(String userResult) {
+    public void setUserResult(int userResult) {
         this.userResult = userResult;
     }
 
@@ -87,6 +87,6 @@ public class User {
     }
 
     public String showUsersResult(){
-        return getFirstName()+ "\t\t" + getLastName() + "\t\t" + getDateTime() + "\t" + "\t" + getGroup() + "\n";
-    }
+        return getFirstName()+ "\t\t" + getLastName() + "\t\t" + getDateTime() + "\t" + "\t" + getUserResult() + " %\n";
+        }
 }

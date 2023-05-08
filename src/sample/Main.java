@@ -14,7 +14,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(panel, 700, 400);
 
-        primaryStage.setTitle("Java testController");
+        primaryStage.setTitle("Java TestController");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

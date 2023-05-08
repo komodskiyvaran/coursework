@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.controllers.testController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.TestController">
+    <children>
+        <AnchorPane layoutY="197.0" prefHeight="503.0" prefWidth="900.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <Button fx:id="nextButton" layoutX="238.0" layoutY="414.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="384.0" stylesheets="@../Styles.css" text="Продолжить">
+               <font>
+                  <Font name="Cascadia Code Regular" size="22.0" />
+               </font>
+            </Button>
+            <RadioButton fx:id="answerD" layoutX="29.0" layoutY="332.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="842.0" text="d">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="answerGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="answerC" layoutX="29.0" layoutY="236.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="842.0" text="c" toggleGroup="$answerGroup">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="answerB" layoutX="29.0" layoutY="145.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="832.0" text="b" toggleGroup="$answerGroup">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="answerA" layoutX="29.0" layoutY="31.0" mnemonicParsing="false" prefHeight="113.0" prefWidth="841.0" selected="true" text="a" toggleGroup="$answerGroup">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <Label fx:id="labelOfResult" layoutX="132.0" layoutY="63.0" prefHeight="229.0" prefWidth="635.0" text="Результат тестирования" visible="false">
+               <font>
+                  <Font name="Cascadia Code Regular" size="46.0" />
+               </font>
+            </Label>
+            <Button fx:id="goBackButton" layoutX="238.0" layoutY="371.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="384.0" stylesheets="@../Styles.css" text="Вернуться в главное меню" visible="false">
+               <font>
+                  <Font name="Cascadia Code Regular" size="22.0" />
+               </font>
+            </Button>
+         </children>
+        </AnchorPane>
+      <TextArea fx:id="textQuestion" editable="false" layoutX="29.0" layoutY="32.0" prefHeight="120.0" prefWidth="842.0" promptText="text">
+         <font>
+            <Font name="Cascadia Code Regular" size="19.0" />
+         </font>
+      </TextArea>
+      <Label fx:id="lableJavaOcenkaZnaniy" layoutX="93.0" layoutY="27.0" prefHeight="130.0" prefWidth="743.0" text="Java - оценки знаний " textFill="WHITE" visible="false">
+         <font>
+            <Font name="Cascadia Code Regular" size="60.0" />
+         </font>
+      </Label>
+    </children>
 </AnchorPane>

@@ -12,9 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.DataBaseHandler;
+import sample.OpenScene;
 import sample.User;
 
-public class SignUpController {
+public class SignUpController implements OpenScene {
 
     @FXML
     private ResourceBundle resources;
@@ -46,6 +47,7 @@ public class SignUpController {
             signUpNewUser();
             openNewScene("/sample/view/sample.fxml");
 
+
         });
     }
 
@@ -63,7 +65,8 @@ public class SignUpController {
 
     }
 
-    public void openNewScene(String window){
+    @Override
+    public void openNewScene(String window) {
         SignButton.getScene().getWindow().hide(); // пр€чем текущую сцену
 
         FXMLLoader loader = new FXMLLoader(); // нужно отобразить следующее окно

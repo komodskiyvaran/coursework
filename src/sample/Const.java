@@ -11,5 +11,6 @@ public class Const {
     public static final String USERS_GROUPNAME = "c_group";
     public static final String USERS_RESULT = "userresult";
     public static final String USERS_DATETIME = "datetime";
+
     public static User USER_NOW;
 }

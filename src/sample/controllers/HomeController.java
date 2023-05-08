@@ -2,8 +2,6 @@ package sample.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,11 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import sample.Const;
 import sample.DataBaseHandler;
+import sample.OpenScene;
 import sample.User;
 
 
-public class HomeController {
+public class HomeController implements OpenScene {
 
     @FXML
     private ResourceBundle resources;
@@ -30,8 +30,6 @@ public class HomeController {
     @FXML
     private Button testButton;
 
-    @FXML
-    private Button startTestButton;
 
     @FXML
     private TextArea boxResultTest;
@@ -48,15 +46,11 @@ public class HomeController {
 
     @FXML
     void initialize() {
+        firstAttempt();
+
         testButton.setOnAction(event -> {
-            resultButton.setVisible(false); // скрываем результрующую кнопку
-            testButton.setVisible(false);   // скрываем кнопку тест
-            startTestButton.setVisible(true);   // открываем кнопку START TEST!
-
-        });
-
-        startTestButton.setOnAction(event -> {
             openNewScene("/sample/view/testJava.fxml");
+
         });
 
         resultButton.setOnAction(event -> {
@@ -73,13 +67,19 @@ public class HomeController {
             boxResultTest.setVisible(false);
             boxResultTest.setVisible(false);
             resultButton.setVisible(true);
-            testButton.setVisible(true);
-            startTestButton.setVisible(false);
+            firstAttempt();
         });
     }
 
-    public void openNewScene(String window){
-        startTestButton.getScene().getWindow().hide(); // пр€чем текущую сцену
+    public void firstAttempt(){ // перва€ ли попытка пройти тест?
+        if (Const.USER_NOW.getUserResult() != 0)
+            testButton.setVisible(false);
+        else testButton.setVisible(true);
+    }
+
+    @Override
+    public void openNewScene(String window) {
+        testButton.getScene().getWindow().hide(); // пр€чем текущую сцену
 
         FXMLLoader loader = new FXMLLoader(); // нужно отобразить следующее окно
         loader.setLocation(getClass().getResource(window)); // прописываем путь к файлу который хотим открыть
@@ -105,5 +105,4 @@ public class HomeController {
         }
         return resulText;
     }
-
 }

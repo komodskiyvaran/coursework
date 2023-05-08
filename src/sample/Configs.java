@@ -6,6 +6,4 @@ public class Configs {
     protected String dbUser = "root";
     protected String dbPass = "sanya";
     protected String dbName = "itproger";
-
-
 }

@@ -14,11 +14,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.DataBaseHandler;
-import sample.Main;
+import sample.OpenScene;
 import sample.User;
 import sample.animations.Shake;
 
-public class Controller {
+public class Controller implements OpenScene{
 
     @FXML
     private ResourceBundle resources;
@@ -54,16 +54,14 @@ public class Controller {
         });
     }
 
-    private void loginUser(String loginText, String loginPassword) {
+    private void loginUser(String loginText, String loginPassword) { // проверка логина и пароля
         DataBaseHandler dbHandler = new DataBaseHandler();
         User user = new User();
         user.setUserName(loginText);
         user.setPassword(loginPassword);
         ResultSet result = dbHandler.getUser(user);
 
-
         int counter = 0;
-
         try {
             while(result.next()){
                 counter++;
@@ -73,10 +71,7 @@ public class Controller {
         }
 
         if (counter >= 1) {
-            //УСТАНОВИМ ЮЗЕРА СЕЙЧАС
-
-
-
+            dbHandler.setUserNow(user); // Установим USER NOW чтобы в будущем отправлять запросы на изменение результата теста через него
             openNewScene("/sample/view/menu.fxml");
         }
         else {
@@ -87,6 +82,7 @@ public class Controller {
         }
     }
 
+    @Override
     public void openNewScene(String window){
         lognSingUpButton.getScene().getWindow().hide(); // прячем текущую сцену
 
