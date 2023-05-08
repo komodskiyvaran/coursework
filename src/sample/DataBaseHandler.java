@@ -4,39 +4,38 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseHandler extends Configs { // Класс отвечает за подключение к БД --- запись/чтение
-    // наследуюем конфигс потому что инфа о бд
-    Connection dbConnection; // тут установится наш коннекшн
+public class DataBaseHandler extends Configs {
+
+    Connection dbConnection;
 
     public Connection getDbConnection()
             throws ClassNotFoundException, SQLException{
         String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?verifyServerCertificate=false"+
-                "&useSSL=false"+        //jdbc плагин позволяет подключаться к бд
+                "&useSSL=false"+
                 "&requireSSL=false"+
                 "&useLegacyDatetimeCode=false"+
                 "&amp"+
-                "&serverTimezone=UTC"; // ТЕКСТ КОТОРЫЙ ПОМОЖЕТ НАМ ПОДКЛЮЧИТЬСЯ К БД
-        Class.forName("com.mysql.cj.jdbc.Driver"); // какой мы используем драйвер
+                "&serverTimezone=UTC";
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass); //КОНЕКШН ПЕРЕДАЕМ НАЗВАНИЕ БД ЛОГИН И ПАРОЛЬ ОТ БД
+        dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
 
         return dbConnection;
     }
 
-    public void singUpUser(User user){      // записываем юзера в бд
-        String insert = "INSERT INTO " + Const.USER_TABLE + " (" +  // sql zapros  - Вставка новой строки в таблицу
+    public void singUpUser(User user){
+        String insert = "INSERT INTO " + Const.USER_TABLE + " (" +
             Const.USERS_FIRSTNAME + "," + Const.USERS_LASTNAME + "," +
             Const.USERS_USERNAME + "," + Const.USERS_PASSWORD + "," +
             Const.USERS_GROUPNAME + "," + Const.USERS_RESULT + "," +
             Const.USERS_DATETIME + ")" + " VALUES (?,?,?,?,?,?,?)";
             // USERT INTO users (firstname,lastname,username,password,groupname,userresult,datatime) + VALUES (?,?,?,?,?,?,?)
         try {
-            //PREPARED STATEMENT - для отпарвки данных
-            PreparedStatement prSt = getDbConnection().prepareStatement(insert); // чичас будем вставлять данные в "?"
+
+            PreparedStatement prSt = getDbConnection().prepareStatement(insert);
             prSt.setString(1, user.getFirstName());
             prSt.setString(2, user.getLastName());
             prSt.setString(3, user.getUserName());
@@ -45,7 +44,7 @@ public class DataBaseHandler extends Configs { // Класс отвечает за подключение 
             prSt.setInt(6, user.getUserResult());
             prSt.setString(7, user.getDateTime());
 
-            prSt.executeUpdate(); // внести изменения
+            prSt.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -73,13 +72,13 @@ public class DataBaseHandler extends Configs { // Класс отвечает за подключение 
         return resSet;
     }
 
-    public void setUserNow(User user){ // устанавливаем юзера сейчас
+    public void setUserNow(User user){
         String select = "SELECT " + Const.USERS_FIRSTNAME + ", " + Const.USERS_LASTNAME + ", " +
                 Const.USERS_GROUPNAME + ", " + Const.USERS_RESULT + ", " + Const.USERS_DATETIME +
                 " FROM " + Const.USER_TABLE + " WHERE " + Const.USERS_USERNAME + "='" + user.getUserName() + "' AND " +
                 Const.USERS_PASSWORD + "='" + user.getPassword() + "'";
           // SELECT firstname, lastname, groupname, userresult, datetime FROM user WHERE username ='user.getUserName()'
-        // AND password='user.getPassword()''
+        // AND password='user.getPassword()'
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
@@ -98,8 +97,7 @@ public class DataBaseHandler extends Configs { // Класс отвечает за подключение 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        // Во временный объект user мы записали пользователя в данный моменты
-        // Перепишим его данные в USER_NOW который хранится в классе Const
+        // the user object is temporary, we will pass the data to the global USER_NOW object
         Const.USER_NOW = new User(user.getFirstName(), user.getLastName(), user.getUserName(), user.getPassword(), user.getGroup(), user.getUserResult(), user.getDateTime());
         System.out.println(Const.USER_NOW.showUsersResult());
     }
@@ -137,29 +135,25 @@ public class DataBaseHandler extends Configs { // Класс отвечает за подключение 
 
     public void setNewResultAndDateForUser(String newDate, int newResult){
 
-        String insert = "UPDATE " + Const.USER_TABLE + " SET " +  // sql zapros  - Вставка новой строки в таблицу
+        String insert = "UPDATE " + Const.USER_TABLE + " SET " +
                 Const.USERS_RESULT + "=?, " +
                 Const.USERS_DATETIME + "=? " + " WHERE " + Const.USERS_USERNAME + "=? AND " +
                 Const.USERS_PASSWORD + "=?";
-        // UPDATE user SET userresult=? AND datetime=? WHERE username='Const.USER_NOW.getUserName' AND password='Const.USER_NOW.getPassword'
+        // UPDATE user SET userresult=? AND datetime=? WHERE username=? AND password=?
 
         try {
-            //PREPARED STATEMENT - для отпарвки данных
-            PreparedStatement updatePS = getDbConnection().prepareStatement(insert); // чичас будем вставлять данные в "?"
-
+            PreparedStatement updatePS = getDbConnection().prepareStatement(insert);
 
             updatePS.setInt(1, newResult);
             updatePS.setString(2, newDate);
             updatePS.setString(3, Const.USER_NOW.getUserName());
             updatePS.setString(4, Const.USER_NOW.getPassword());
 
-
-            updatePS.executeUpdate(); // внести изменения
+            updatePS.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 }

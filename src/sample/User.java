@@ -1,6 +1,7 @@
 package sample;
 
 public class User {
+
     private String firstName;
     private String lastName;
     private String userName;
@@ -27,8 +28,7 @@ public class User {
         this.group = group;
     }
 
-    public User() {
-    }
+    public User() {}
 
     public int getUserResult() {
         return userResult;

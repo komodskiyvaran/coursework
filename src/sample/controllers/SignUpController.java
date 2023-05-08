@@ -1,8 +1,6 @@
 package sample.controllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,42 +15,33 @@ import sample.User;
 
 public class SignUpController implements OpenScene {
 
-    @FXML
-    private ResourceBundle resources;
+    @FXML   private TextField login_filed;
 
-    @FXML
-    private URL location;
+    @FXML   private PasswordField password_field;
 
-    @FXML
-    private Button SignButton;
+    @FXML   private TextField signUpName;
 
-    @FXML
-    private TextField login_filed;
+    @FXML   private TextField signUpSurname;
 
-    @FXML
-    private PasswordField password_field;
+    @FXML   private TextField signUpGroup;
 
-    @FXML
-    private TextField signUpGroup;
+    @FXML    private Button SignButton;
 
-    @FXML
-    private TextField signUpName;
 
-    @FXML
-    private TextField signUpSurname;
 
     @FXML
     void initialize() {
-        SignButton.setOnAction(event -> {   // нажимаем на кнопку "Зарегистрироваться"
+        SignButton.setOnAction(event -> {
+
             signUpNewUser();
             openNewScene("/sample/view/sample.fxml");
-
 
         });
     }
 
     private void signUpNewUser() {
         DataBaseHandler dbHandler = new DataBaseHandler();
+
         String firstName = signUpName.getText();
         String lastName = signUpSurname.getText();
         String userName = login_filed.getText();
@@ -67,20 +56,20 @@ public class SignUpController implements OpenScene {
 
     @Override
     public void openNewScene(String window) {
-        SignButton.getScene().getWindow().hide(); // прячем текущую сцену
+        SignButton.getScene().getWindow().hide();
 
-        FXMLLoader loader = new FXMLLoader(); // нужно отобразить следующее окно
-        loader.setLocation(getClass().getResource(window)); // прописываем путь к файлу который хотим открыть
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
 
         try {
-            loader.load(); // пробуем загрузить
+            loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Parent root = loader.getRoot(); // полный путь к файлу который необходимо загрузить
+        Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.show(); // показать и подождать
+        stage.show();
     }
 }

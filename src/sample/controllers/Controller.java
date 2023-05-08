@@ -1,10 +1,9 @@
 package sample.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,30 +17,21 @@ import sample.OpenScene;
 import sample.User;
 import sample.animations.Shake;
 
-public class Controller implements OpenScene{
+public class Controller implements OpenScene {
 
-    @FXML
-    private ResourceBundle resources;
+    @FXML   private TextField login_filed;
 
-    @FXML
-    private URL location;
+    @FXML   private PasswordField password_field;
 
-    @FXML
-    private Button authfSignButton;
+    @FXML   private Button authfSignButton;
 
-    @FXML
-    private TextField login_filed;
+    @FXML   private Button loginSingUpButton;
 
-    @FXML
-    private Button lognSingUpButton;
-
-    @FXML
-    private PasswordField password_field;
 
     @FXML
     void initialize() {
-        authfSignButton.setOnAction(event -> { // нажимаем на кнопку "войти"
-            String loginText = login_filed.getText().trim(); // trim - удаление пробелов со строки
+        authfSignButton.setOnAction(event -> {
+            String loginText = login_filed.getText().trim();
             String loginPassword = password_field.getText().trim();
 
             if(!loginPassword.equals("") && !loginText.equals(""))
@@ -49,12 +39,11 @@ public class Controller implements OpenScene{
             else System.out.println("login or password is empty");
         });
 
-        lognSingUpButton.setOnAction(event -> { // нажимаем на кнопку "регистраци€"
-            openNewScene("/sample/view/signUp.fxml");
-        });
+        loginSingUpButton.setOnAction(event -> openNewScene("/sample/view/signUp.fxml"));
     }
 
-    private void loginUser(String loginText, String loginPassword) { // проверка логина и парол€
+    private void loginUser(String loginText, String loginPassword) {
+
         DataBaseHandler dbHandler = new DataBaseHandler();
         User user = new User();
         user.setUserName(loginText);
@@ -63,18 +52,17 @@ public class Controller implements OpenScene{
 
         int counter = 0;
         try {
-            while(result.next()){
+            while(result.next()) {
                 counter++;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        if (counter >= 1) {
-            dbHandler.setUserNow(user); // ”становим USER NOW чтобы в будущем отправл€ть запросы на изменение результата теста через него
+        if (counter!=0) {
+            dbHandler.setUserNow(user);
             openNewScene("/sample/view/menu.fxml");
-        }
-        else {
+        } else {
             Shake userloginAnim = new Shake(login_filed);
             Shake userPasswordAnim = new Shake(password_field);
             userloginAnim.playAnim();
@@ -83,21 +71,21 @@ public class Controller implements OpenScene{
     }
 
     @Override
-    public void openNewScene(String window){
-        lognSingUpButton.getScene().getWindow().hide(); // пр€чем текущую сцену
+    public void openNewScene(String window) {
+        loginSingUpButton.getScene().getWindow().hide();
 
-        FXMLLoader loader = new FXMLLoader(); // нужно отобразить следующее окно
-        loader.setLocation(getClass().getResource(window)); // прописываем путь к файлу который хотим открыть
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
 
         try {
-            loader.load(); // пробуем загрузить
+            loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Parent root = loader.getRoot(); // полный путь к файлу который необходимо загрузить
+        Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.show(); // показать и подождать
+        stage.show();
     }
 }

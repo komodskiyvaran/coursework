@@ -1,9 +1,7 @@
 package sample.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,82 +19,67 @@ import sample.User;
 
 public class HomeController implements OpenScene {
 
-    @FXML
-    private ResourceBundle resources;
+    @FXML   private Button testButton;
 
-    @FXML
-    private URL location;
+    @FXML   private Button resultButton;
 
-    @FXML
-    private Button testButton;
+    @FXML   private TextArea boxResultTest;
 
+    @FXML   private Label textview;
 
-    @FXML
-    private TextArea boxResultTest;
-
-    @FXML
-    private ImageView imageButtonHome;
-
-    @FXML
-    private Button resultButton;
-
-    @FXML
-    private Label textview;
+    @FXML   private ImageView imageButtonHome;
 
 
     @FXML
     void initialize() {
+
         firstAttempt();
 
-        testButton.setOnAction(event -> {
-            openNewScene("/sample/view/testJava.fxml");
-
-        });
+        testButton.setOnAction(event -> openNewScene("/sample/view/testJava.fxml"));
 
         resultButton.setOnAction(event -> {
-            textview.setVisible(true);
             resultButton.setVisible(false);
             testButton.setVisible(false);
-            boxResultTest.setVisible(true); // открываем наш text Area
-            boxResultTest.setText(printResultAllUsers());
 
+            textview.setVisible(true);
+            boxResultTest.setVisible(true);
+            boxResultTest.setText(getResultAllUsers());
         });
 
-        imageButtonHome.setOnMouseClicked(mouseEvent -> { // нажимаешь на картинку - возвращается в исходное положение менюшки
+        imageButtonHome.setOnMouseClicked(mouseEvent -> {
             textview.setVisible(false);
             boxResultTest.setVisible(false);
             boxResultTest.setVisible(false);
+
             resultButton.setVisible(true);
             firstAttempt();
         });
     }
 
-    public void firstAttempt(){ // первая ли попытка пройти тест?
-        if (Const.USER_NOW.getUserResult() != 0)
-            testButton.setVisible(false);
-        else testButton.setVisible(true);
+    public void firstAttempt() { // Is this the first attempt to pass the test?
+        testButton.setVisible(Const.USER_NOW.getUserResult() == 0);
     }
 
     @Override
     public void openNewScene(String window) {
-        testButton.getScene().getWindow().hide(); // прячем текущую сцену
+        testButton.getScene().getWindow().hide();
 
-        FXMLLoader loader = new FXMLLoader(); // нужно отобразить следующее окно
-        loader.setLocation(getClass().getResource(window)); // прописываем путь к файлу который хотим открыть
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
 
         try {
-            loader.load(); // пробуем загрузить
+            loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Parent root = loader.getRoot(); // полный путь к файлу который необходимо загрузить
+        Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.show(); // показать и подождать
+        stage.show();
     }
 
-    public String printResultAllUsers(){
+    public String getResultAllUsers() {
         String resulText = "";
         DataBaseHandler dbHandler = new DataBaseHandler();
         List<User> users = dbHandler.getAllUsers();

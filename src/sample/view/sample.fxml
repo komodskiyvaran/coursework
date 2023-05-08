@@ -31,7 +31,7 @@
                   <Font name="Times New Roman" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="lognSingUpButton" layoutX="364.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #b3b3b3;" stylesheets="@../Styles.css" text="Зарегистрироваться" textFill="WHITE">
+            <Button fx:id="loginSingUpButton" layoutX="364.0" layoutY="181.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="197.0" style="-fx-background-color: #b3b3b3;" stylesheets="@../Styles.css" text="Зарегистрироваться" textFill="WHITE">
                <font>
                   <Font name="Times New Roman" size="20.0" />
                </font>

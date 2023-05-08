@@ -57,7 +57,7 @@
             <Font name="Cascadia Code Regular" size="19.0" />
          </font>
       </TextArea>
-      <Label fx:id="lableJavaOcenkaZnaniy" layoutX="93.0" layoutY="27.0" prefHeight="130.0" prefWidth="743.0" text="Java - оценки знаний " textFill="WHITE" visible="false">
+      <Label fx:id="labelJavaKnowledgeAssessment" layoutX="93.0" layoutY="27.0" prefHeight="130.0" prefWidth="743.0" text="Java - оценки знаний " textFill="WHITE" visible="false">
          <font>
             <Font name="Cascadia Code Regular" size="60.0" />
          </font>
